@@ -14,44 +14,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     });
     const salary = document.querySelector('#salary');
-    const output = document.querySelector(".salary-output");
+    const output = document.querySelector('.salary-output');
     output.textContent = salary.value;
     salary.addEventListener('input', function () {
         output.textContent = salary.value;
     });
-
 });
-
-window.addEventListener('DOMContentLoaded', (event) => {
-    const name = document.querySelector("#name");
-    const nameError = document.querySelector(".name-error");
-    name.addEventListener("input", function () {
-        if (name.value.length == 0) {
-            nameError.textContent = "";
-            return;
-        }
-        try {
-            (new EmployeePayrollData()).name = name.value;
-            nameError.textContent = "";
-        } catch (error) {
-            nameError.textContent = error;
-        }
-    });
-    const salary = document.querySelector('#salary');
-    const output = document.querySelector(".salary-output");
-    output.textContent = salary.value;
-    salary.addEventListener('input', function () {
-        output.textContent = salary.value;
-    });
-
-});
-
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     } catch (error) {
         return;
     }
+}
+
+
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined)
+        employeePayrollList.push(employeePayrollData);
+    else {
+        employeePayrollList = [employeePayrollData];
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 }
 
 const createEmployeePayroll = () => {
@@ -71,12 +58,10 @@ const createEmployeePayroll = () => {
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }
-
 const setTextValue = (id, value) => {
     const element = document.querySelector(id);
     element.textContent = value;
 }
-
 const getSelectedValues = (property) => {
     let allItems = document.querySelectorAll(property);
     let selectedItems = [];
@@ -86,7 +71,6 @@ const getSelectedValues = (property) => {
     });
     return selectedItems;
 }
-
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
