@@ -56,7 +56,7 @@ body{
 .form-head{
     font: normal normal bold 24px/37px Roboto;
     letter-spacing: 0px;
-    color: #42515f;
+    color: #145999;
     text-transform: capitalize;
     opacity: 1;
     padding-bottom: 20px;
@@ -66,7 +66,7 @@ body{
     flex-direction: row;
     margin-bottom: 10px;
     align-items: center;
-    border: 0px solid green;
+    border: 0px solid rgb(34, 0, 128);
 }
 .label{
     min-width: 140px;
@@ -74,6 +74,7 @@ body{
 label{
     padding: 12px 12px 12px 0;
     display: inline-block;
+    
 }
 .text{
     font-size: 16px;
@@ -152,7 +153,7 @@ error-output{
     color: red;
 }
 
-@media only screen and (max-width: 960px){
+@media only screen and (max-width: 1024px){
     .cancelButton{
         margin-left: 0px;
     }
@@ -164,7 +165,7 @@ error-output{
         flex-flow: wrap;
     }
 }
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 778px){
     .form{
         margin-top: 10px;
     }
